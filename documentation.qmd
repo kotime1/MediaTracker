@@ -1,0 +1,55 @@
+# Media Tracker Documentation
+
+## Database Design
+```{mermaid}
+erDiagram
+
+    media||--o{media_genre : has
+    media||--o{media_language : has
+    media||--o{media_status : has
+
+    media_genre||--o{genre : has
+    media_language||--o{language: has
+    media_status||--o{status: has
+    
+
+    media{
+        PRIMARY_KEY id
+        string title
+        date releaseYear
+        double rating
+        int episodes
+        int completedEps
+    }
+
+    genre{
+        PRIMARY_KEY id
+        string name
+    }
+
+    language{
+        PRIMARY_KEY id
+        string name
+    }
+
+    media_genre{
+        FOREIGN_KEY mediaID
+        FOREIGN_KEY genreID
+    }
+
+    media_language{
+        FOREIGN_KEY mediaID
+        FOREIGN_KEY languageID
+    }
+
+    status{
+        PRIMARY_KEY id
+        String status
+    }
+
+    media_status{
+        FOREIGN_KEY mediaID
+        FOREIGN_KEY statusID
+    }
+```
+
