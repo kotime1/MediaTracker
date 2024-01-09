@@ -7,7 +7,7 @@ def login():
       return render_template("login.html")
 
 @auth.route('/signup', methods=['GET', 'POST'])
-def register():
+def signup():
       if request.method == 'POST':
             username = request.form.get('username')
             email = request.form.get('email')
@@ -15,17 +15,17 @@ def register():
             password2 = request.form.get('password2')
 
             if len(password1) < 8:
-                  flash('Password must be at least 8 characters', category="error")
+                  flash('Password must be at least 8 characters', category='error')
             elif password1 != password2:
-                  flash('Passwords to not match', category="error")
+                  flash('Passwords do not match', category='error')
             elif len(username) < 4:
-                  flash('Username must be at least 4 characters', category="error")
-            elif '@' not in email:
-                  flash('Invalid Email', category="error")
+                  flash('Username must be at least 4 characters', category='error')
             elif len(email) < 3:
-                  flash('Email too short', category="error")
+                  flash('Email too short', category='error')
             else:
-                  flash('Account created successfully', category="success")
+                  flash('Account created successfully', category='success')
+
+      return render_template("signup.html")
 
 
 
